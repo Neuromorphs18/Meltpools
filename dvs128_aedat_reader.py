@@ -10,7 +10,7 @@ from PyAedatTools.ImportAedatHeaders import ImportAedatHeaders
 from PyAedatTools.ImportAedatDataVersion1or2 import ImportAedatDataVersion1or2
 
 
-def dvs128_events_to_frames(aedat,events_per_frame=1000,num_frames = 1000, hop_ratio=2, time_steps = 10):
+def dvs128_events_to_frames(aedat, events_per_frame=1000, numb_frames = -1, hop_ratio=2, time_steps = 10):
     #pdb.set_trace()
     #num_frames = aedat['data']['frame']['numEvents']
     if events_per_frame:
@@ -20,7 +20,8 @@ def dvs128_events_to_frames(aedat,events_per_frame=1000,num_frames = 1000, hop_r
         assert(num_frames > 0)
 
     theEvents = []
-    #num_frames = 1000
+    if numb_frames>0:
+        num_frames = numb_frames
     framex = aedat['data']['polarity']['x']
     framey = aedat['data']['polarity']['y']
     framepol = aedat['data']['polarity']['polarity']
@@ -92,9 +93,9 @@ def plot_bboxes(bbox1,bbox2,bbox3,bbox4):
     plt.imshow(bbox4)
     plt.show()
 
-def get_aed_frames(input_file_path, events_per_frame=1000, num_frames=1000, hop_ratio = 2, time_steps = 10):
+def get_aed_frames(input_file_path, events_per_frame=1000, num_frames=-1, hop_ratio = 2, time_steps = 10):
     # Configure the reading parameters
-    input_file_path = '/Users/twelsh/Neuromorph2018/meltpool_data/multiwell_fixture/DVS128-2016-09-24T22-13-51-0600-0293-0_12_Hz_gallium.aedat'
+    #input_file_path = '/Users/twelsh/Neuromorph2018/meltpool_data/multiwell_fixture/DVS128-2016-09-24T22-13-51-0600-0293-0_12_Hz_gallium.aedat'
     aedat = {}
     aedat['importParams'] = {}
     aedat['importParams']['filePath'] = input_file_path
